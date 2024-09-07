@@ -46,14 +46,14 @@ export default function Home() {
 
   useEffect(() => {
     getCars();
-  }, [fuel, year, limit, manufacturer, model]);
+  }, [fuel, year, limit, manufacturer, model, getCars]);
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
   return (
     <main className="overflow-hidden">
       <Hero />
-      
+
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
           <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
@@ -76,8 +76,8 @@ export default function Home() {
         {allCars.length > 0 ? (
           <section>
             <div className="home__cars-wrapper">
-              {allCars?.map((car) => (
-                <CarCard car={car} />
+              {allCars?.map((car, i) => (
+                <CarCard key={i} car={car} />
               ))}
             </div>
 
